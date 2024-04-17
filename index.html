@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Englebert&family=IM+Fell+English+SC&family=Single+Day&display=swap" rel="stylesheet">
 <title>쇼핑몰</title>
 <style>
-  /* General Styles */
+  /* Common Styles */
   body {
     margin: 0;
     font-family: "Englebert", sans-serif;
@@ -14,7 +14,7 @@
     color: #333;
     line-height: 1.6;
   }
-  
+
   a {
     color: #8857c9;
     text-decoration: none;
@@ -70,7 +70,6 @@
 
   .container {
     position: relative;
-    min-height: calc(100vh - 240px);
     padding: 0 20px;
   }
 
@@ -84,16 +83,14 @@
 
   /* Slide Show Styles */
   .slideshow-container {
-    width: 1700px;
-    height: 600px;
+    max-width: 100%;
+    overflow: hidden;
     position: relative;
   }
 
-
-
   .mySlides img {
-    width: 1700px;
-    height: 600px;
+    width: 100%;
+    height: auto;
   }
 
   /* Next & previous buttons */
@@ -110,6 +107,7 @@
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
     user-select: none;
+    background-color: rgba(0,0,0,0.5);
   }
 
   /* Position the "next button" to the right */
@@ -148,63 +146,76 @@
     color: #fff;
     text-decoration: none;
   }
+
+  /* Media Queries for Responsive Design */
+  @media only screen and (min-width: 420px) {
+    .slideshow-container {
+      max-width: 420px;
+      margin: auto;
+    }
+
+    .mySlides img {
+      width: 420px;
+      height: auto;
+    }
+  }
 </style>
 </head>
 <body>
-  <header>
-    <h1>Shopping Mall</h1>
-    <div class="auth-buttons">
-      <a href="login.html">Login</a>
-      <a href="sign.html">Sign Up</a>
-    </div>
-  </header>
-  <nav>
-    <a href="computer.html">Computer</a>
-    <a href="clothes.html">Clothes</a>
-    <a href="grocery.html">Grocery</a>
-    <a href="furniture.html">Furniture</a>
-  </nav>
-  <div class="container">
-    <div class="slideshow-container">
-      <div class="mySlides fade">
-        <img src="https://cdn.pixabay.com/photo/2017/01/22/12/07/imac-1999636_640.png" width="400px" height="300px" alt="Slide 1">
-      </div>
-      <div class="mySlides fade">
-        <img src="https://cdn.pixabay.com/photo/2015/12/09/17/11/vegetables-1085063_640.jpg" width="400px" height="300px" alt="Slide 2">
-      </div>
-      <div class="mySlides fade">
-        <img src="https://cdn.pixabay.com/photo/2016/11/18/17/20/living-room-1835923_640.jpg" width="400px" height="300px" alt="Slide 3">
-      </div>
-      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
+<header>
+  <h1>Shopping Mall</h1>
+  <div class="auth-buttons">
+    <a href="login.html" style="margin-right:10px;">Login</a>
+    <a href="sign.html">Sign Up</a>
   </div>
-  <footer>
-    <ul>
-      <li>Email: <a href="mailto:info@example.com">info@example.com</a></li>
-      <li>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></li>
-      <li>Address: 123 Shopping Mall Street, City, Country</li>
-    </ul>
-  </footer>
-  <script>
-    var slideIndex = 0;
-    showSlides();
+</header>
+<nav>
+  <a href="computer.html">Computer</a>
+  <a href="clothes.html">Clothes</a>
+  <a href="grocery.html">Grocery</a>
+  <a href="furniture.html">Furniture</a>
+</nav>
+<div class="container">
+  <div class="slideshow-container">
+    <div class="mySlides fade">
+      <img src="https://cdn.pixabay.com/photo/2017/01/22/12/07/imac-1999636_640.png" alt="Slide 1">
+    </div>
+    <div class="mySlides fade">
+      <img src="https://cdn.pixabay.com/photo/2015/12/09/17/11/vegetables-1085063_640.jpg" alt="Slide 2">
+    </div>
+    <div class="mySlides fade">
+      <img src="https://cdn.pixabay.com/photo/2016/11/18/17/20/living-room-1835923_640.jpg" alt="Slide 3">
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+</div>
+<footer>
+  <ul>
+    <li>Email: <a href="mailto:info@example.com">info@example.com</a></li>
+    <li>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></li>
+    <li>Address: 123 Shopping Mall Street, City, Country</li>
+  </ul>
+</footer>
+<script>
+var slideIndex = 0;
+showSlides();
 
-    function showSlides() {
-      var i;
-      var slides = document.getElementsByClassName("mySlides");
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
-      }
-      slideIndex++;
-      if (slideIndex > slides.length) {slideIndex = 1}    
-      slides[slideIndex-1].style.display = "block";  
-      setTimeout(showSlides, 2000); // Change image every 2 seconds
-    }
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  slides[slideIndex-1].style.display = "block";  
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
 
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
-  </script>
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+</script>
 </body>
 </html>
